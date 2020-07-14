@@ -146,6 +146,8 @@ import gql from 'graphql-tag'
 export const GET_ARTICLES = gql`
 {
   Article {
+    cardType
+    subtitle
     articleId
     image
     title

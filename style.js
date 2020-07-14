@@ -7,6 +7,23 @@ const styles = StyleSheet.create({
 		fontSize:16,
 		color:'#101010',
 		fontWeight:'bold'
+	},
+	title: {
+		fontWeight:'bold',
+    	fontSize:32,
+	},
+	subtitle: {
+		fontSize:24,
+	},
+	shadow: {
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.26,
+		shadowRadius: 7,
+		elevation: 10,
 	}
 })
 

@@ -3,11 +3,11 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import App from './App'
 import ApolloClient from 'apollo-boost'
 
-const client = process.env.NODE_ENV === 'development' ? new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_URI || 'http://localhost:4000',
-}) :  
-new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_URI || 'https://eloquent-chandrasekhar-a221ea.netlify.app/.netlify/functions/graphql',
+// const client = new ApolloClient({
+//   uri: process.env.REACT_APP_GRAPHQL_URI || 'http://localhost:4000',
+// }) 
+const client = new ApolloClient({
+  uri: 'https://eloquent-chandrasekhar-a221ea.netlify.app/.netlify/functions/graphql',
 })
 
 

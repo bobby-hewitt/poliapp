@@ -88,11 +88,14 @@ const App = props => {
     setModal(false)
   }
 
-  if (error || loading ) {
-    console.log('error', error, loading)
-    return <View />
+  if (error ) {
+    
+    return <View><Text>Error</Text></View>
+
+  } else if (loading){
+      return <View><Text>Loading</Text></View>    
   }
-  console.log(data.Article)
+  
 
   return (
     <React.Fragment>
@@ -100,7 +103,7 @@ const App = props => {
         {entries && entries.map((item, i) => {
           return(
             <View key={i}  style={styles.itemContainer}>
-            <Card {...item} index={i} onSelect={onCardSelect}cardWidth={cardWidth}/>
+              <Card shadow modal={modal}{...item} index={i} onSelect={onCardSelect}cardWidth={cardWidth}/>
             </View>
           )
         })}
@@ -125,7 +128,6 @@ const styles = StyleSheet.create({
  },
  itemContainer:{
    borderRadius:20,
-   overflow:'hidden',
    width:'100%',
    marginBottom:20,
  },

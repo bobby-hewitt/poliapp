@@ -41,8 +41,6 @@ const Articles = ({items, title}) => {
 
 const styles = StyleSheet.create({
   container:{
-
-    backgroundColor:'#fff',
     width:300,
     flex:1,
     padding:20,
