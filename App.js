@@ -88,6 +88,12 @@ const App = props => {
     setModal(false)
   }
 
+  const onResetComplete = (index) => {
+    const newEntries = Object.assign([], entries)
+    newEntries[index].complete = true
+    setEntries(newEntries)
+  }
+
   if (error ) {
     
     return <View><Text>Error</Text></View>
@@ -95,6 +101,8 @@ const App = props => {
   } else if (loading){
       return <View><Text>Loading</Text></View>    
   }
+
+
   
 
   return (
@@ -103,7 +111,7 @@ const App = props => {
         {entries && entries.map((item, i) => {
           return(
             <View key={i}  style={styles.itemContainer}>
-              <Card shadow modal={modal}{...item} index={i} onSelect={onCardSelect}cardWidth={cardWidth}/>
+              <Card shadow modal={modal}{...item} onResetComplete={onResetComplete} index={i} onSelect={onCardSelect}cardWidth={cardWidth}/>
             </View>
           )
         })}

@@ -14,7 +14,8 @@ import {
   PanResponder
 } from 'react-native';
 import globalStyles from '../../style'
-import {ParallaxImage} from 'react-native-snap-carousel';
+import Complete from '../Complete'
+
 import LinearGradient from 'react-native-linear-gradient';
 import OverlayDark from './OverlayDark'
 import OverlayLight from './OverlayLight'
@@ -25,7 +26,7 @@ const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
 
 
-const Card = ({item, modal, index, noHandlers, shadow, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}) => {
+const Card = ({item, complete, onResetComplete, modal, index, noHandlers, shadow, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}) => {
     const scale = useRef(new Animated.Value(1)).current
     const [ doNotRender, setDoNotRender ] = useState(false)
     let isResponding = false
@@ -83,7 +84,11 @@ const Card = ({item, modal, index, noHandlers, shadow, cardWidth, parallaxProps,
           useNativeDriver:true,
           duration:400,
           easing: Easing.easeOut
-        }).start()
+        }).start(() => {
+          if (onResetComplete){
+            onResetComplete(index)
+          }
+        })
     }
   }, [modal])
 
@@ -102,6 +107,7 @@ const Card = ({item, modal, index, noHandlers, shadow, cardWidth, parallaxProps,
 
   function onRelease(){
      if (isResponding){
+
         scale.stopAnimation()
         isResponding = false
         Animated.timing(scale, {
@@ -115,6 +121,7 @@ const Card = ({item, modal, index, noHandlers, shadow, cardWidth, parallaxProps,
 
 
   function onPress(){
+    scale.stopAnimation()
     cardRef.current.measure( (fx, fy, width, height, pageX, pageY) => {
       const position = {
         width, 
@@ -140,8 +147,8 @@ const Card = ({item, modal, index, noHandlers, shadow, cardWidth, parallaxProps,
     <View style={styles.outerContainer} {...panResponder.panHandlers}>
      
        <View style={[shadow ? globalStyles.shadow : {}, styles.item]}>
-      <Animated.View ref={cardRef}style={[{overflow: 'hidden', width:'100%', height:'100%',borderRadius: borderRadius || 20, transform:[{scale: scaleHandler}]}]}>
-        
+      <Animated.View ref={cardRef}style={[{position:'relative',overflow: 'hidden', width:'100%', height:'100%',borderRadius: borderRadius || 20, transform:[{scale: scaleHandler}]}]}>
+       
         {(!cardType || cardType === 'overlayDark') && 
           <OverlayDark {...{item, index, noHandlers, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}}/>
         }
@@ -153,6 +160,9 @@ const Card = ({item, modal, index, noHandlers, shadow, cardWidth, parallaxProps,
         }
         {(cardType === 'titleSectionBottom') && 
           <TitleSectionBottom {...{item, index, noHandlers, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}}/>
+        }
+        {complete && 
+         <Complete noAnimation={noHandlers}/>
         }
         
       </Animated.View>
