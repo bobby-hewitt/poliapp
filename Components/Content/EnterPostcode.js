@@ -17,12 +17,12 @@ const LocalContent = ({}) => {
 
 	function onSubmitPostcode(postcode){
 		
-		fetch(`http://localhost:4001/api/postcode?postcode=${postcode}`)
+		fetch(`https://poliapp.herokuapp.com/api/postcode?postcode=${postcode}`)
 		.then(response => response.json())
   		.then(data => {
   			
   			state.setConstituency(data.constituency)
-        
+
   			state.setMp(data.mp)
   			storeData(JSON.stringify(data))
   		})
