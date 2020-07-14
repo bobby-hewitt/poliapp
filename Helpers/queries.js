@@ -161,4 +161,22 @@ export const GET_ARTICLES = gql`
   }
 }`
 
-
+export const GET_PERSON = gql`
+  query Person($personId: ID!) {
+    Person(personId: $personId) {
+      personId
+      name
+      party{
+        name
+        partyId
+      }
+      twitter
+      tweets
+      departments{
+        name
+        departmentId
+      }
+      image
+    }
+  }
+`;

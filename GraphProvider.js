@@ -1,6 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import App from './App'
+import { Provider } from "./context";
 import ApolloClient from 'apollo-boost'
 
 // const client = new ApolloClient({
@@ -12,11 +13,22 @@ const client = new ApolloClient({
 
 
 const GraphProvider = props => {
-
+  const [ constituency, setConstituency ] = useState(false)
+  const [ mp, setMp ] = useState(false)
   return (
     
     <ApolloProvider client={client}>
+      <Provider
+        value={{
+          mp,
+          setMp,
+          constituency,
+          setConstituency,
+          test: 'Helllooooooooooo'
+        }}
+      >
      <App />
+     </Provider>
     </ApolloProvider>
   );
 };

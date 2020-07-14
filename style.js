@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
 	subtitle: {
 		fontSize:24,
 	},
+	bodycopy: {
+		fontSize:16,
+		color:'#676767'
+	},
 	shadow: {
 		shadowColor: "#000",
 		shadowOffset: {

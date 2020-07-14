@@ -20,6 +20,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import OverlayDark from './OverlayDark'
 import OverlayLight from './OverlayLight'
 import TitleSectionTop from './TitleSectionTop'
+import Local from './Local'
 import TitleSectionBottom from './TitleSectionBottom'
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
@@ -161,6 +162,10 @@ const Card = ({item, complete, onResetComplete, modal, index, noHandlers, shadow
         {(cardType === 'titleSectionBottom') && 
           <TitleSectionBottom {...{item, index, noHandlers, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}}/>
         }
+        {(cardType === 'local') && 
+          <Local {...{item, index, noHandlers, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}}/>
+        }
+
         {complete && 
          <Complete noAnimation={noHandlers}/>
         }

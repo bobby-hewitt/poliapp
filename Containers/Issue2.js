@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useState} from 'react'
-import { Card } from '../Components'
-import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback, View, Animated, Easing } from 'react-native'
+import { Card, TextInput,LocalContent } from '../Components'
+import { StyleSheet, Text, Dimensions, Image, TouchableWithoutFeedback, View, Animated, Easing } from 'react-native'
 import globalStyles from '../style'
 const { width, height } = Dimensions.get('window')
 
@@ -152,15 +152,22 @@ const Article = ({article, position, close, cardWidth }) => {
     //     outputRange: [0.9, 1]
     // })
 	return(
-		<Animated.View style={[styles.container, globalStyles.shadow, {top:yPos, left:xPos, width:elemWidth, height:elemHeight}]}>
+		<Animated.ScrollView style={[styles.container, globalStyles.shadow, {top:yPos, left:xPos, width:elemWidth, height:elemHeight}]}>
 			
 			<Card noHandlers {...article} onSelect={() => {return}} borderRadius={borderRadius}/>
 			<TouchableWithoutFeedback onPress={() => onClose()}>
 				<View style={styles.closeContainer}>
 	            <Image style={styles.closeIcon} source={require('../Assets/Icons/close.png')} />
 	            </View>
-	          </TouchableWithoutFeedback>
-		</Animated.View>
+	         </TouchableWithoutFeedback>
+	         <View style={{padding:20}}>
+	         {article.cardType === 'local' &&
+	         <LocalContent />
+	     	}
+	     	</View>
+
+	        
+		</Animated.ScrollView>
 	)
 }
 

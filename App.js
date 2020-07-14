@@ -130,8 +130,8 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding:20,
-    
+    paddingHorizontal:20,
+    paddingVertical:80,
     backgroundColor:'#f2f2f2',
  },
  itemContainer:{

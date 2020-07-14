@@ -10,7 +10,7 @@ import {
 import globalStyles from '../../style'
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 const TitleSectionBottom = ({item, index, noHandlers, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}) => {
-  console.log('LIGHT')
+  
   return(
       <React.Fragment>
       <View style={styles.titleContainer}>
