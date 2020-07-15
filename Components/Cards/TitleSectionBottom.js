@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import globalStyles from '../../style'
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
-const TitleSectionBottom = ({item, index, noHandlers, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}) => {
+const TitleSectionBottom = ({item, index, noHandlers, maxTextWidth, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}) => {
   
   return(
       <React.Fragment>
@@ -17,16 +17,14 @@ const TitleSectionBottom = ({item, index, noHandlers, cardWidth, parallaxProps, 
           source={{uri: image}}
           style={styles.image} 
         />
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>{badge}</Text>
-        </View>
+        
         <View style={styles.titleContainer}>
            <View style={styles.titleInnerContainer}>
-             <Text style={[globalStyles.title, styles.text]} numberOfLines={2}>
+             <Text style={[globalStyles.title, styles.text, {maxWidth: maxTextWidth}]} numberOfLines={2}>
                 {title}           
               </Text>
               {subtitle &&
-                <Text style={[globalStyles.subtitle, styles.text]} numberOfLines={2}>
+                <Text style={[globalStyles.subtitle, styles.text, {maxWidth: maxTextWidth}]} numberOfLines={2}>
                    {subtitle}
                 </Text>
               }

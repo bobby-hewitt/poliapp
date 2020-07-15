@@ -9,24 +9,21 @@ import {
 } from 'react-native';
 import globalStyles from '../../style'
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
-const Card = ({item, index, noHandlers, cardWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}) => {
+const Card = ({item, index, noHandlers, cardWidth, maxTextWidth, parallaxProps, borderRadius, containerStyle,onSelect, image, badge, title, subtitle, cardType}) => {
   return(
       <React.Fragment>
         <Image
           source={{uri: image}}
           style={styles.image} 
         />
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>{badge}</Text>
-        </View>
         
           <View style={styles.titleContainer}>
            <View style={styles.titleInnerContainer}>
-             <Text style={[globalStyles.title, styles.text]} numberOfLines={2}>
+             <Text style={[globalStyles.title, styles.text, {maxWidth: maxTextWidth}]} numberOfLines={2}>
                 {title}           
               </Text>
               {subtitle &&
-                <Text style={[globalStyles.subtitle, styles.text]} numberOfLines={2}>
+                <Text style={[globalStyles.subtitle, styles.text, {maxWidth: maxTextWidth}]} numberOfLines={2}>
                    {subtitle}
                 </Text>
               }

@@ -47,10 +47,12 @@ const Person = ({mpId}) => {
 	
 	
 	return(
-		<View>
+		<View style={globalStyles.row}>
 			<Image source={{uri: person.image}} style={styles.image}/>
+			<View style={[globalStyles.column, globalStyles.centeredJustify]}>
 			<Text style={[globalStyles.subtitle]}>{person.name}</Text>
 			<Text style={[globalStyles.bodycopy]}>{person.party.name}</Text>
+			</View>
 			{/*person.tweets.map((item, i ) => {
 				return(
 					<View style={{height:4000, width:100, backgroundColor:'red'}} />
@@ -63,9 +65,10 @@ const Person = ({mpId}) => {
 
 const styles = StyleSheet.create({
   image:{
-  	width:100,
+  	width:60,
   	borderRadius:50,
-  	height:100,
+  	height:60,
+  	marginRight:12,
 
   }
 });

@@ -6,9 +6,11 @@ import {
   Text,
   Easing,
   Dimensions,
-  AsyncStorage
+  
 } from 'react-native';
 import Context from '../../context'
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { TextInput } from '../'
 
 import globalStyles from '../../style'
@@ -41,9 +43,9 @@ const LocalContent = ({}) => {
 	};
   return(
       	<React.Fragment>
-			<Text style={globalStyles.bodycopy}>To help us find your MP you'll need to enter your postcode</Text>
-	        <TextInput onSubmit={onSubmitPostcode} placeholder="Enter your postcode" />
-	        <Text style={globalStyles.bodycopy}>We won't ever pass this information on</Text> 
+	        		
+	        <TextInput onSubmit={onSubmitPostcode} placeholder="Enter your postcode" containerStyle={{marginTop:24}} />
+	       
       	</React.Fragment>
   )
 }

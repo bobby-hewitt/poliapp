@@ -1,6 +1,6 @@
 export { default as SwipeCard } from './SwipeCard'
 export { default as Card } from './Cards/Card'
-export { default as Complete } from './Complete'
+export { default as LottieAnimation } from './LottieAnimation'
 export { default as TextInput } from './TextInput'
 export { default as Fade } from './Fade'
 export { default as Quote } from './Quote'

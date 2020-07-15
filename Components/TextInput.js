@@ -5,10 +5,10 @@ import {
   View,
   Dimensions,
 } from 'react-native';
+import globalStyles from '../style'
 
 
-
-const TextInputComp = ({items, isPassed, onSubmit, placeholder, buttonHidden,onRespond, style}) => {
+const TextInputComp = ({items, isPassed, onSubmit, placeholder, containerStyle, buttonHidden,onRespond, style}) => {
      
 
     function onSubmitInternal(e){
@@ -17,7 +17,7 @@ const TextInputComp = ({items, isPassed, onSubmit, placeholder, buttonHidden,onR
       }
     }
     return(
-      <View style={styles.container}>
+      <View style={[styles.container, containerStyle ? containerStyle : {}]}>
        <TextInput 
          returnKeyType="go"
          textContentType="postalCode"
@@ -25,7 +25,7 @@ const TextInputComp = ({items, isPassed, onSubmit, placeholder, buttonHidden,onR
          autoCompleteType='postal-code'
          onSubmitEditing={onSubmitInternal}
          placeholder={placeholder}
-         style={[styles.input, style ? style : {}]}/>
+         style={[globalStyles.bodycopy, styles.input, style ? style : {}]}/>
       </View>
     )
 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     fontSize:16,
     height:56,
     borderBottomWidth:1,
-    
+
     borderBottomColor:'#676767'
   },
   bodycopy:{

@@ -143,6 +143,10 @@ const Article = ({article, position, close, cardWidth }) => {
         inputRange: [0, 1],
         outputRange: [20, 0]
     })
+    const closeOpacity = animatedVal.interpolate({
+        inputRange: [0.5, 1],
+        outputRange: [0, 1]
+    })
     // const translateXHandler = scale.interpolate({
     //     inputRange: [0, 1],
     //     outputRange: [0.9, 1]
@@ -152,14 +156,11 @@ const Article = ({article, position, close, cardWidth }) => {
     //     outputRange: [0.9, 1]
     // })
 	return(
+		<View style={{position:'absolute', top:0, left:0, bottom:0, right:0}}>
 		<Animated.ScrollView style={[styles.container, globalStyles.shadow, {top:yPos, left:xPos, width:elemWidth, height:elemHeight}]}>
 			
-			<Card noHandlers {...article} onSelect={() => {return}} borderRadius={borderRadius}/>
-			<TouchableWithoutFeedback onPress={() => onClose()}>
-				<View style={styles.closeContainer}>
-	            <Image style={styles.closeIcon} source={require('../Assets/Icons/close.png')} />
-	            </View>
-	         </TouchableWithoutFeedback>
+			<Card {...article} shadow={false} isFromModal noHandlers  onSelect={() => {return}} borderRadius={borderRadius} maxTextWidth={position.width -20}animValue={animatedVal}/>
+			
 	         <View style={{padding:20}}>
 	         {article.cardType === 'local' &&
 	         <LocalContent />
@@ -168,6 +169,12 @@ const Article = ({article, position, close, cardWidth }) => {
 
 	        
 		</Animated.ScrollView>
+		<TouchableWithoutFeedback onPress={() => onClose()}>
+				<Animated.View style={[styles.closeContainer, {opacity: closeOpacity}]}>
+	            <Image style={styles.closeIcon} source={require('../Assets/Icons/close.png')} />
+	            </Animated.View>
+	         </TouchableWithoutFeedback>
+		</View>
 	)
 }
 
@@ -181,8 +188,8 @@ const styles = StyleSheet.create({
 	},
 	closeContainer:{
 		position:'absolute',
-		top:40,
-		right:20,
+		top:50,
+		right:0,
 		width:44,
 		height:44,
 	},
